@@ -1,23 +1,31 @@
 //Ex 1. Now add movement for the sprite in the y-direction and make them bounce off of all the borders on the canvas. The result should be a windows theme screensaver
-speedX = 2;
-speedY = 2;
-myX = 30;
-myY = 0;
+
+let speedX;
+let speedY;
+let myX;
+let myY;
 
 function setup() {
   createCanvas(400, 400);
   colorMode(HSL);
   rectMode(CENTER);
   angleMode(DEGREES);
+  
+  speedX = random(1, 10);
+  speedY = random(1, 10);
+  myX = random(30, width - 50);
+  myY = random(30, height - 50);
 }
 
 function draw() {
   background(240, 75, 72);
+  
   drawMaxx(myX, myY, 0.5); //My Sprite
   
   myX += speedX; //X Movement
-  myY += speedY;
+  myY += speedY; //Y Movement
   
+  //Reverses X and Y speed when there's a collision
   if (myX + 50 >= width || myX < 0){
     speedX *= -1;
   }
@@ -28,6 +36,7 @@ function draw() {
 
 function drawMaxx(x, y, size) {
   push();
+  //Changes sprite based on user input
   translate(x, y);
   scale(size);
   push();
@@ -37,7 +46,8 @@ function drawMaxx(x, y, size) {
   let skin = color(34, 60, 69);
   let darkSkin = color(34, 60, 59);
   let darkerSkin = color(35, 60, 49);
-
+  
+  //Fits sprite into top left corner
   scale(0.5);
   translate(-85, -54);
 
@@ -127,4 +137,3 @@ function drawMaxx(x, y, size) {
   pop();
   pop();
 }
-//Link to sketch: https://editor.p5js.org/maxxkeoni219/sketches/huu931ZUT
